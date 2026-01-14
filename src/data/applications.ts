@@ -17,6 +17,8 @@ export const applications: Application[] = [
           'Complete patient records with smart templates',
           'Backup and restore for data safety',
           'Fast search and patient history access',
+          'User-friendly interface designed for clinics',
+          'Print outs prescriptions and documents',
         ],
         image: img('core-system.svg'),
         price: 30000,
@@ -36,18 +38,18 @@ export const applications: Application[] = [
       {
         id: 'lab-scanning',
         name: 'Scan & Upload Diagnostic Files',
-        description: 'Scan, capture, or upload diagnostic files and images into the patient record.',
+        description: 'Scan or capture patient diagnostic files/images into the patient record.',
         highlights: [
           'Scan documents or capture images',
-          'Upload lab results, X-rays, ECGs, and reports',
-          'Files saved in patient history',
+          'Compile diagnostics in patient records',
+          'Via a Scanner or Mobile Device',
         ],
         image: img('lab-scanning.svg'),
         price: 4500,
       },
       {
         id: 'inventory',
-        name: 'Inventory & Prescription Tracking',
+        name: 'Inventory System',
         description: 'Track medicines and clinic supplies linked to prescriptions.',
         highlights: [
           'Stock in, out, and adjustments',
@@ -59,7 +61,7 @@ export const applications: Application[] = [
       },
       {
         id: 'remote-encoding',
-        name: 'Historical Record Encoding (Off-Site)',
+        name: 'Past Records Encoding (Off-Site)',
         description:
           'Encode old patient records on a separate computer outside the clinic and sync them into the main system.',
         highlights: ['Off-site or at-home encoding setup', 'Designed for encoding historical and backlog records'],
@@ -68,7 +70,7 @@ export const applications: Application[] = [
       },
       {
         id: 'dashboard',
-        name: 'Clinic Dashboard & Reports',
+        name: 'Clinic Dashboard',
         description: 'View clinic activity and revenues at a glance.',
         highlights: ['Revenues and consultation counts', 'Date-based filters', 'Quick clinic insights'],
         image: img('dashboard.svg'),
