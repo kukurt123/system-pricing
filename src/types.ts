@@ -5,6 +5,7 @@ export type Feature = {
   highlights?: string[]
   image?: string
   price: number
+  required?: boolean
 }
 
 export type Application = {

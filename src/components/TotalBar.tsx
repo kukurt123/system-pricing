@@ -1,90 +1,105 @@
-import type { FC } from 'react'
 import { formatPrice } from '../utils/pricing'
 
 type Props = {
   overallTotal: number
   onRequest: () => void
   onQuestions: () => void
+  onDemo: () => void
   facebookUrl: string
 }
 
-const TotalBar: FC<Props> = ({ overallTotal, onRequest, onQuestions, facebookUrl }) => (
-  <footer className="total-bar">
-    <div className="total-left" role="status" aria-live="polite">
-      <span className="total-label">Total</span>
-      <span className="total-amount">
-        <span key={overallTotal} className="price-pop">
-          {formatPrice(overallTotal)}
-        </span>
-      </span>
-    </div>
-    <div className="total-actions">
-      <button className="primary" onClick={onRequest}>
-        <span className="button-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M7 3.75h7.5L19.25 8.5V20.25a.75.75 0 0 1-.75.75H7a.75.75 0 0 1-.75-.75V4.5c0-.414.336-.75.75-.75Z"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M14.5 3.75V8.5h4.75"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9 12.25h7.5M9 15.5h7.5M9 18.75h5.5"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-          </svg>
-        </span>
-        Get a quote
-      </button>
-      <button className="ghost-button" onClick={onQuestions}>
-        <span className="button-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M7.5 18.25 4.75 20.5V6.75c0-.966.784-1.75 1.75-1.75h11c.966 0 1.75.784 1.75 1.75v8.5c0 .966-.784 1.75-1.75 1.75h-10Z"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M8.75 9.25h6.5M8.75 12.25h6.5"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-          </svg>
-        </span>
-        Ask a question
-      </button>
-      <a
-        className="ghost-button facebook-button"
-        href={facebookUrl}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Contact us on Facebook"
-      >
-        <span className="button-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M14.5 8.5h2V5.25h-2c-1.933 0-3.5 1.567-3.5 3.5v2H8v3.25h3v6h3.25v-6h2.75l.75-3.25h-3.5v-2c0-.414.336-.75.75-.75Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-        Facebook
-      </a>
-      {/* <button className="ghost-button" onClick={onReset}>
-        Reset selection
-      </button> */}
-    </div>
-  </footer>
+const IconHelp = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 0 1 5.82 1c0 2-3 2-3 4" />
+    <path d="M12 17h.01" />
+  </svg>
 )
+
+const IconPlayCircle = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none" />
+  </svg>
+)
+
+const IconFacebook = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M15 8h-2a3 3 0 0 0-3 3v2H8v3h2v4h3v-4h2.5l.5-3H13v-2a1 1 0 0 1 1-1h2V8z" />
+  </svg>
+)
+
+const TotalBar = ({ overallTotal, onRequest, onQuestions, onDemo, facebookUrl }: Props) => {
+  return (
+    <footer className="total-bar">
+      <div className="total-actions">
+        <button className="primary" onClick={onRequest}>
+          Get a quote
+        </button>
+        <button className="ghost-button" type="button" onClick={onQuestions}>
+          <IconHelp className="button-icon" />
+          Ask a question
+        </button>
+        <button className="ghost-button" type="button" onClick={onDemo}>
+          <IconPlayCircle className="button-icon" />
+          Ask a demo
+        </button>
+        <button
+          className="ghost-button"
+          type="button"
+          onClick={() => window.open(facebookUrl, "_blank", "noopener,noreferrer")}
+        >
+          <IconFacebook className="button-icon facebook" />
+          Facebook
+        </button>
+      </div>
+      <div className="total-left" role="status" aria-live="polite">
+        <span className="total-label">Total</span>
+        <span className="total-amount">
+          <span key={overallTotal} className="price-pop">
+            {formatPrice(overallTotal)}
+          </span>
+        </span>
+      </div>
+    </footer>
+  )
+}
 
 export default TotalBar

@@ -1,4 +1,100 @@
 import { useEffect, useRef } from 'react'
+import { applications } from '../data/applications'
+import { formatPrice } from '../utils/pricing'
+
+const img = (name: string) => `${import.meta.env.BASE_URL}illustrations/${name}`
+
+const IconSliders = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <line x1="4" x2="4" y1="21" y2="14" />
+    <line x1="4" x2="4" y1="10" y2="3" />
+    <line x1="12" x2="12" y1="21" y2="12" />
+    <line x1="12" x2="12" y1="8" y2="3" />
+    <line x1="20" x2="20" y1="21" y2="16" />
+    <line x1="20" x2="20" y1="12" y2="3" />
+    <line x1="2" x2="6" y1="14" y2="14" />
+    <line x1="10" x2="14" y1="8" y2="8" />
+    <line x1="18" x2="22" y1="16" y2="16" />
+  </svg>
+)
+
+const IconMonitor = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect width="20" height="14" x="2" y="3" rx="2" />
+    <line x1="8" x2="16" y1="21" y2="21" />
+    <line x1="12" x2="12" y1="17" y2="21" />
+  </svg>
+)
+
+const IconWifiOff = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M5 12.55a11 11 0 0 1 14 0" />
+    <path d="M8.5 16.28a6 6 0 0 1 7 0" />
+    <circle cx="12" cy="20" r="1" fill="currentColor" stroke="none" />
+    <line x1="4" y1="4" x2="20" y2="20" />
+  </svg>
+)
+
+const IconShieldCheck = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M20 13c0 5-4 9-8 9s-8-4-8-9V5l8-3 8 3z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+)
+
+const coreSystem =
+  applications.find((app) => app.id === 'pms')?.features.find((feature) => feature.id === 'core-system') ?? null
+
+const coreSystemPrice = coreSystem?.price ?? 0
+const coreSystemName = coreSystem?.name ?? 'Core system'
 
 const Hero = () => {
   const heroRef = useRef<HTMLElement | null>(null)
@@ -38,40 +134,40 @@ const Hero = () => {
 
   return (
     <header className="hero" ref={heroRef}>
-      <div className="eyebrow">Patient Management System</div>
       <div className="hero-headline">
-        <div className="hero-decor" aria-hidden="true">
-          <div className="hero-orb hero-orb-one" />
-          <div className="hero-orb hero-orb-two" />
-          <div className="hero-wave-wrap">
-            <svg className="hero-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="heroWaveGradient" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="rgba(14, 165, 233, 0.28)" />
-                  <stop offset="50%" stopColor="rgba(99, 102, 241, 0.22)" />
-                  <stop offset="100%" stopColor="rgba(34, 197, 94, 0.18)" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0,52 C120,84 260,18 400,46 C540,74 680,104 820,82 C960,60 1080,10 1200,40 L1200,120 L0,120 Z"
-                fill="url(#heroWaveGradient)"
-                opacity="0.95"
-              />
-              <path
-                d="M0,72 C140,102 300,44 440,62 C580,80 720,110 860,90 C1000,70 1100,30 1200,54 L1200,120 L0,120 Z"
-                fill="rgba(99, 102, 241, 0.14)"
-                opacity="0.9"
-              />
-            </svg>
+        <div className="hero-copy">
+          {/* <div className="eyebrow">Patient Management System</div> */}
+          <h1>Clinic System Quotation</h1>
+          <h2 className="hero-lead">Make every visit smoother.</h2>
+          <div className="hero-notes" aria-label="Good to know">
+            <div className="hero-note">
+              <IconWifiOff className="hero-note-icon" />
+              No internet needed
+            </div>
+            <div className="hero-note">
+              <IconMonitor className="hero-note-icon" />
+              Works on Windows &amp; Mac
+            </div>
+            <div className="hero-note">
+              <IconShieldCheck className="hero-note-icon" />
+              Data safety (backup &amp; restore)
+            </div>
+            <div className="hero-note">
+              <IconSliders className="hero-note-icon" />
+              Customizable and expandable
+            </div>
           </div>
         </div>
 
-        <div className="hero-content">
-          <h1>Choose only what your clinic needs.</h1>
-          <p>Select features individually. See your total instantly in PHP.</p>
-          <p className="hero-note">
-            Fully customizable • Software only (hardware not included) • Backup &amp; restore available
-          </p>
+        <div className="hero-visual">
+          <div className="hero-art-wrap">
+            <img className="hero-art" src={img('clinic-hero.svg')} alt="" decoding="async" />
+            <div className="hero-art-badge">
+              <div className="hero-art-badge-kicker">Basic package</div>
+              <div className="hero-art-badge-price">{formatPrice(coreSystemPrice)}</div>
+              <div className="hero-art-badge-sub">{coreSystemName}</div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

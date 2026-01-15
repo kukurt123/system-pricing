@@ -11,17 +11,18 @@ export const applications: Application[] = [
       {
         id: 'core-system',
         name: 'Core Patient Management',
-        description: 'Complete system for consultations and patient records.',
+        description: 'Your clinic’s essential workflow in one system.',
+        required: true,
         highlights: [
           'Consultations, prescriptions, certificates, referrals',
           'Complete patient records with smart templates',
           'Backup and restore for data safety',
           'Fast search and patient history access',
           'User-friendly interface designed for clinics',
-          'Print outs prescriptions and documents',
+          'Print-ready prescriptions and documents',
         ],
         image: img('core-system.svg'),
-        price: 30000,
+        price: 34000,
       },
       {
         id: 'dual-station',

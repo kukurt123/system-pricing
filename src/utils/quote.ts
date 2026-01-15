@@ -1,7 +1,7 @@
 import type { Application, Selections } from '../types'
 import { formatPrice } from './pricing'
 
-const DEFAULT_RECIPIENT = 'sales@yourcompany.com'
+const DEFAULT_RECIPIENT = 'kurtestacion@gmail.com'
 
 export const buildQuoteMailto = (
   apps: Application[],
@@ -12,7 +12,7 @@ export const buildQuoteMailto = (
   const lines: string[] = []
 
   apps.forEach((app) => {
-    const enabled = app.features.filter((feature) => selections[app.id]?.[feature.id] ?? true)
+    const enabled = app.features.filter((feature) => feature.required || (selections[app.id]?.[feature.id] ?? false))
     if (!enabled.length) return
     lines.push(`${app.name}:`)
     enabled.forEach((feature) => {
@@ -46,7 +46,7 @@ export const buildQuestionMailto = (
   const interestLines: string[] = []
 
   apps.forEach((app) => {
-    const enabled = app.features.filter((feature) => selections[app.id]?.[feature.id] ?? true)
+    const enabled = app.features.filter((feature) => feature.required || (selections[app.id]?.[feature.id] ?? false))
     if (!enabled.length) return
     enabled.forEach((feature) => interestLines.push(`- ${feature.name}`))
   })
@@ -63,5 +63,33 @@ export const buildQuestionMailto = (
   const body = bodyLines.join('\n')
 
   const subject = 'Questions - Patient Management System'
+  return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
+
+export const buildDemoMailto = (
+  apps: Application[],
+  selections: Selections,
+  recipient = DEFAULT_RECIPIENT,
+) => {
+  const interestLines: string[] = []
+
+  apps.forEach((app) => {
+    const enabled = app.features.filter((feature) => feature.required || (selections[app.id]?.[feature.id] ?? false))
+    if (!enabled.length) return
+    enabled.forEach((feature) => interestLines.push(`- ${feature.name}`))
+  })
+
+  const bodyLines = ['Hi team,', '', 'I’d like to schedule a demo for the Patient Management System.', '']
+
+  if (interestLines.length) {
+    bodyLines.push("I'm interested in:", ...interestLines, '')
+  } else {
+    bodyLines.push('I’m interested in a quick overview demo.', '')
+  }
+
+  bodyLines.push('Preferred date/time:', '-', '', 'Clinic / Company:', 'Name:', 'Contact number:')
+  const body = bodyLines.join('\n')
+
+  const subject = 'Demo request - Patient Management System'
   return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 }

@@ -12,7 +12,7 @@ type Props = {
 
 const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle }) => {
   const selectedCount = app.features.reduce((count, feature) => {
-    const enabled = selections[app.id]?.[feature.id] ?? true
+    const enabled = feature.required ? true : (selections[app.id]?.[feature.id] ?? false)
     return enabled ? count + 1 : count
   }, 0)
 
@@ -20,13 +20,13 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
     <article className="app-card">
       <header className="app-header">
         <div>
-          <div className="badge">Pricing Builder</div>
+          <div className="badge">Custom quote</div>
           <h2>{app.name}</h2>
           <p className="tagline">{app.tagline}</p>
         </div>
         <div className="app-meta">
           <div className="app-meta-count">
-            {selectedCount} / {app.features.length} selected
+            {selectedCount} of {app.features.length} included
           </div>
           <div className="app-meta-actions">
             <button className="link-button" onClick={onSelectAll}>
@@ -42,9 +42,10 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
 
       <div className="feature-list" role="list">
         {app.features.map((feature, featureIndex) => {
-          const enabled = selections[app.id]?.[feature.id] ?? true
-          const highlights = feature.highlights?.length ? feature.highlights : [feature.description]
           const isFeatured = feature.id === 'core-system'
+          const isLocked = feature.required || isFeatured
+          const enabled = isLocked ? true : (selections[app.id]?.[feature.id] ?? false)
+          const highlights = feature.highlights?.length ? feature.highlights : [feature.description]
           return (
             <div
               key={feature.id}
@@ -63,10 +64,11 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
                   </div>
                   <div className="feature-actions">
                     <div className="feature-price">{formatPrice(feature.price)}</div>
-                    <label className="toggle">
+                    <label className={`toggle ${isLocked ? 'is-locked' : ''}`}>
                       <input
                         type="checkbox"
                         checked={enabled}
+                        disabled={isLocked}
                         onChange={(event) => onToggle(feature.id, event.target.checked)}
                       />
                       <span className="slider" />

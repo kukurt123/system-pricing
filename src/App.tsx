@@ -5,7 +5,7 @@ import TotalBar from './components/TotalBar'
 import { applications } from './data/applications'
 import { contact } from './data/contact'
 import { useSelections } from './hooks/useSelections'
-import { buildQuestionMailto, buildQuoteMailto } from './utils/quote'
+import { buildDemoMailto, buildQuestionMailto, buildQuoteMailto } from './utils/quote'
 
 function App() {
   const {
@@ -25,11 +25,16 @@ function App() {
     window.location.href = mailto
   }
 
+  const handleDemoRequest = () => {
+    const mailto = buildDemoMailto(applications, selections, contact.email)
+    window.location.href = mailto
+  }
+
   return (
     <main className="page">
       <Hero />
 
-      <section className="apps-grid">
+      <section className="apps-grid" id="pricing">
         {applications.map((app) => (
           <AppCard
             key={app.id}
@@ -46,6 +51,7 @@ function App() {
         overallTotal={overallTotal}
         onRequest={handleQuoteRequest}
         onQuestions={handleQuestions}
+        onDemo={handleDemoRequest}
         facebookUrl={contact.facebookUrl}
       />
     </main>
