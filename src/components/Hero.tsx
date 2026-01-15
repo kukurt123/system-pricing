@@ -136,9 +136,18 @@ const Hero = () => {
     <header className="hero" ref={heroRef}>
       <div className="hero-headline">
         <div className="hero-copy">
-          {/* <div className="eyebrow">Patient Management System</div> */}
-          <h1>Clinic System Quotation</h1>
+          <h1>Patient Management System Pricing</h1>
           <h2 className="hero-lead">Make every visit smoother.</h2>
+          <div>
+            <div className="eyebrow">
+              <span className="icon windows"></span>
+            </div>
+            <div className="space-2"></div>
+            <div className="eyebrow">
+              <span className="icon mac"></span>
+            </div>
+          </div>
+          <div className="block"></div>
           <div className="hero-notes" aria-label="Good to know">
             <div className="hero-note">
               <IconWifiOff className="hero-note-icon" />

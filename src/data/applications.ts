@@ -5,8 +5,8 @@ const img = (name: string) => `${import.meta.env.BASE_URL}illustrations/${name}`
 export const applications: Application[] = [
   {
     id: 'pms',
-    name: 'Patient Management System',
-    tagline: 'Core clinic workflow with optional add-ons.',
+    name: 'Options',
+    tagline: 'Choose only what you need',
     features: [
       {
         id: 'core-system',
@@ -38,11 +38,11 @@ export const applications: Application[] = [
       },
       {
         id: 'lab-scanning',
-        name: 'Scan & Upload Diagnostic Files',
+        name: 'Scan & Store Diagnostic Files',
         description: 'Scan or capture patient diagnostic files/images into the patient record.',
         highlights: [
-          'Scan documents or capture images',
-          'Compile diagnostics in patient records',
+          'Save lab results and diagnostic images per patient',
+          'Everything stays in one place',
           'Via a Scanner or Mobile Device',
         ],
         image: img('lab-scanning.svg'),

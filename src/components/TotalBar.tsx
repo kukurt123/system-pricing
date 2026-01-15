@@ -79,7 +79,7 @@ const TotalBar = ({ overallTotal, onRequest, onQuestions, onDemo, facebookUrl }:
         </button>
         <button className="ghost-button" type="button" onClick={onDemo}>
           <IconPlayCircle className="button-icon" />
-          Ask a demo
+          Request Online Demo
         </button>
         <button
           className="ghost-button"
