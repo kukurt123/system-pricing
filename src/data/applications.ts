@@ -88,7 +88,7 @@ export const applications: Application[] = [
       },
       {
         id: 'print-customization',
-        name: 'Custom Print Templates',
+        name: 'Personalized Print Templates',
         description: 'Customize printed prescriptions and certificates.',
         highlights: ['Clinic branding and layout', 'Professional printouts', 'Consistent document formats'],
         image: img('print-customization.svg'),
