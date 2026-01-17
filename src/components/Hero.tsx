@@ -293,7 +293,7 @@ const Hero = () => {
           <div className="hero-notes" aria-label="Good to know">
             <div className="hero-note">
               <IconWifiOff className="hero-note-icon" />
-              No internet needed
+              No internet needed • No monthly fees
             </div>
             <div className="hero-note">
               <IconMonitor className="hero-note-icon" />
