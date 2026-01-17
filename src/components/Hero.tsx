@@ -90,6 +90,148 @@ const IconShieldCheck = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const IconAlertTriangle = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M10.3 3.6 1.9 18a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z" />
+    <path d="M12 9v4" />
+    <path d="M12 17h.01" />
+  </svg>
+)
+
+const IconLaptop = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect width="18" height="12" x="3" y="4" rx="2" />
+    <path d="M2 20h20" />
+  </svg>
+)
+
+const IconPhone = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect width="10" height="18" x="7" y="3" rx="2" />
+    <path d="M11 18h2" />
+  </svg>
+)
+
+const IconPrinter = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M6 9V2h12v7" />
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+    <path d="M6 14h12v8H6z" />
+  </svg>
+)
+
+const IconDrive = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect width="18" height="14" x="3" y="5" rx="2" />
+    <path d="M7 9h.01" />
+    <path d="M11 9h.01" />
+    <path d="M15 9h.01" />
+  </svg>
+)
+
+const IconPower = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M12 2v10" />
+    <path d="M18.36 6.64a9 9 0 1 1-12.72 0" />
+  </svg>
+)
+
+const IconRouter = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect width="20" height="8" x="2" y="14" rx="2" />
+    <path d="M6 18h.01" />
+    <path d="M10 18h.01" />
+    <path d="M14 18h.01" />
+    <path d="M18 18h.01" />
+    <path d="M7 10a7 7 0 0 1 10 0" />
+    <path d="M9.5 12.5a3.5 3.5 0 0 1 5 0" />
+  </svg>
+)
+
 const coreSystem =
   applications.find((app) => app.id === 'pms')?.features.find((feature) => feature.id === 'core-system') ?? null
 
@@ -179,6 +321,60 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      <section className="hardware-card" aria-label="Hardware checklist">
+        <div className="hardware-card-header">
+          <div className="hardware-card-title">
+            <IconAlertTriangle className="hardware-card-title-icon" />
+            Hardware not included
+          </div>
+        </div>
+        <p className="hardware-card-note">To use the system, you’ll need these basic devices in your clinic.</p>
+        <div className="hardware-chips" role="list">
+          <div className="hardware-chip" role="listitem">
+            <IconLaptop className="hardware-chip-icon" />
+            Computer/Laptop
+          </div>
+          <div className="hardware-chip" role="listitem">
+            <IconPhone className="hardware-chip-icon" />
+            Hand devices
+          </div>
+          <div className="hardware-chip" role="listitem">
+            <IconPrinter className="hardware-chip-icon" />
+            Printer &amp; scanner
+          </div>
+          <a
+            className="hardware-chip hardware-chip-link"
+            role="listitem"
+            href="https://www.google.com/search?tbm=isch&q=usb+external+drive"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <IconDrive className="hardware-chip-icon" />
+            USB/External drives
+          </a>
+          <a
+            className="hardware-chip hardware-chip-link"
+            role="listitem"
+            href="https://www.google.com/search?tbm=isch&q=ups+uninterruptible+power+supply"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <IconPower className="hardware-chip-icon" />
+            UPS
+          </a>
+          <a
+            className="hardware-chip hardware-chip-link"
+            role="listitem"
+            href="https://www.google.com/search?tbm=isch&q=wifi+router"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <IconRouter className="hardware-chip-icon" />
+            Router
+          </a>
+        </div>
+      </section>
     </header>
   )
 }

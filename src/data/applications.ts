@@ -20,6 +20,7 @@ export const applications: Application[] = [
           'Fast search and patient history access',
           'User-friendly interface designed for clinics',
           'Print-ready prescriptions and documents',
+          'For single user (one device) only'
         ],
         image: img('core-system.svg'),
         price: 34000,

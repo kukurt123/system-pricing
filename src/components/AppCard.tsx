@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { useState, type FC } from 'react'
 import type { Application, Selections } from '../types'
 import { formatPrice } from '../utils/pricing'
 
@@ -11,6 +11,8 @@ type Props = {
 }
 
 const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle }) => {
+  const [expandedFeatures, setExpandedFeatures] = useState<Record<string, boolean>>({})
+
   const selectedCount = app.features.reduce((count, feature) => {
     const enabled = feature.required ? true : (selections[app.id]?.[feature.id] ?? false)
     return enabled ? count + 1 : count
@@ -21,7 +23,7 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
       <header className="app-header">
         <div>
           <div className="badge">Custom quote</div>
-          <h2>{app.name}</h2>
+          <h2></h2>
           <p className="tagline">{app.tagline}</p>
         </div>
         <div className="app-meta">
@@ -46,6 +48,8 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
           const isLocked = feature.required || isFeatured
           const enabled = isLocked ? true : (selections[app.id]?.[feature.id] ?? false)
           const highlights = feature.highlights?.length ? feature.highlights : [feature.description]
+          const isExpanded = expandedFeatures[feature.id] ?? false
+          const detailsId = `${app.id}-${feature.id}-details`
           return (
             <div
               key={feature.id}
@@ -63,6 +67,21 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
                     {isFeatured ? <span className="feature-tag">Main package</span> : null}
                   </div>
                   <div className="feature-actions">
+                    <button
+                      type="button"
+                      className="feature-details-toggle"
+                      aria-expanded={isExpanded}
+                      aria-controls={detailsId}
+                      onClick={() =>
+                        setExpandedFeatures((prev) => ({
+                          ...prev,
+                          [feature.id]: !isExpanded,
+                        }))
+                      }
+                    >
+                      <span className="sr-only">More</span>
+                      <span className="details-chevron" aria-hidden="true" />
+                    </button>
                     <div className="feature-price">{formatPrice(feature.price)}</div>
                     <label className={`toggle ${isLocked ? 'is-locked' : ''}`}>
                       <input
@@ -75,20 +94,18 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
                     </label>
                   </div>
                 </div>
-                <details className="feature-details">
-                  <summary className="feature-details-summary">
-                    <span className="sr-only">Details</span>
-                    <span className="details-chevron" aria-hidden="true" />
-                  </summary>
-                  <div className="feature-details-body">
-                    <p className="feature-description">{feature.description}</p>
-                    <ul className="feature-highlights">
-                      {highlights.map((item, index) => (
-                        <li key={`${feature.id}:${index}`}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </details>
+                <div
+                  id={detailsId}
+                  className={`feature-details-panel ${isExpanded ? 'is-open' : ''}`}
+                  hidden={!isExpanded}
+                >
+                  <p className="feature-description">{feature.description}</p>
+                  <ul className="feature-highlights">
+                    {highlights.map((item, index) => (
+                      <li key={`${feature.id}:${index}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           )
