@@ -26,6 +26,18 @@ export const applications: Application[] = [
         price: 34000,
       },
       {
+        id: 'cloud-backup',
+        name: 'Cloud Backup',
+        description: 'Keep an off-site copy of your clinic data for extra protection.',
+        highlights: [
+          'Secure cloud copy of your clinic records',
+          'Extra protection against device loss or damage',
+          'Supports recovery alongside your local backup',
+        ],
+        image: img('cloud-backup.svg'),
+        price: 3500,
+      },
+      {
         id: 'dual-station',
         name: 'Multi-User Access',
         description: 'Use the system on multiple clinic computers with secure logins.',

@@ -296,6 +296,10 @@ const Hero = () => {
               No internet needed • No monthly fees
             </div>
             <div className="hero-note">
+              <IconMonitor className="hero-note-icon" />
+              Works on Windows &amp; Mac
+            </div>
+            <div className="hero-note">
               <IconShieldCheck className="hero-note-icon" />
               Data safety (backup &amp; restore)
             </div>
