@@ -47,7 +47,7 @@ export const applications: Application[] = [
           'Shared patient records for easy collaboration',
         ],
         image: img('dual-station.svg'),
-        price: 12000,
+        price: 8000,
       },
       {
         id: 'lab-scanning',
