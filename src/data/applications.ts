@@ -75,12 +75,12 @@ export const applications: Application[] = [
       },
       {
         id: 'remote-encoding',
-        name: 'Past Records Encoding (Off-Site)',
+        name: 'Old Patient Records Encoding (Off-Site)',
         description:
           'Encode old patient records on a separate computer outside the clinic and sync them into the main system.',
         highlights: ['Off-site or at-home encoding setup', 'Designed for encoding historical and backlog records'],
         image: img('remote-encoding.svg'),
-        price: 8000,
+        price: 5000,
       },
       {
         id: 'dashboard',
@@ -88,7 +88,7 @@ export const applications: Application[] = [
         description: 'View clinic activity and revenues at a glance.',
         highlights: ['Revenues and consultation counts', 'Date-based filters', 'Quick clinic insights'],
         image: img('dashboard.svg'),
-        price: 8000,
+        price: 5000,
       },
       {
         id: 'pediatrics-pack',
