@@ -92,9 +92,13 @@ export const applications: Application[] = [
       },
       {
         id: 'pediatrics-pack',
-        name: 'Pediatrics Package',
-        description: 'Tools and templates designed for pediatric clinics.',
-        highlights: ['Guardian and birth detail fields', 'Child-friendly forms', 'Optimized pediatric workflow'],
+        name: 'Vaccination Package',
+        description: 'Tools and templates for recording vaccines and managing immunization visits.',
+        highlights: [
+          'Vaccination history and immunization records',
+          'Visit templates for vaccine administration',
+          'Faster documentation during immunization visits',
+        ],
         image: img('pediatrics-pack.svg'),
         price: 5000,
       },
