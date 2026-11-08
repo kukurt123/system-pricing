@@ -1,0 +1,90 @@
+[
+  {
+    "id": "core-system",
+    "name": "Core Patient Management",
+    "duration": 201.133333,
+    "durationLabel": "3:21",
+    "bytes": 4494290,
+    "recording": true
+  },
+  {
+    "id": "cloud-backup",
+    "name": "Cloud Backup",
+    "duration": 14.333333,
+    "durationLabel": "0:14",
+    "bytes": 198329,
+    "recording": true
+  },
+  {
+    "id": "dual-station",
+    "name": "Multi-User Access",
+    "duration": 24.833333,
+    "durationLabel": "0:25",
+    "bytes": 565242,
+    "recording": true
+  },
+  {
+    "id": "remote-access",
+    "name": "Remote Access",
+    "duration": 56.1,
+    "durationLabel": "0:56",
+    "bytes": 930584,
+    "recording": true
+  },
+  {
+    "id": "ai-assistant",
+    "name": "AI Assistant",
+    "duration": 92.133333,
+    "durationLabel": "1:32",
+    "bytes": 2794120,
+    "recording": true
+  },
+  {
+    "id": "lab-scanning",
+    "name": "Scan & Store Diagnostic Files",
+    "duration": 33.333333,
+    "durationLabel": "0:33",
+    "bytes": 774275,
+    "recording": true
+  },
+  {
+    "id": "inventory",
+    "name": "Inventory System",
+    "duration": 67.366667,
+    "durationLabel": "1:07",
+    "bytes": 1806750,
+    "recording": true
+  },
+  {
+    "id": "remote-encoding",
+    "name": "Old Patient Records Encoding",
+    "duration": 75.366667,
+    "durationLabel": "1:15",
+    "bytes": 2359463,
+    "recording": true
+  },
+  {
+    "id": "dashboard",
+    "name": "Clinic Dashboard",
+    "duration": 42.9,
+    "durationLabel": "0:43",
+    "bytes": 905540,
+    "recording": true
+  },
+  {
+    "id": "pediatrics-pack",
+    "name": "Vaccination Package",
+    "duration": 65.733333,
+    "durationLabel": "1:06",
+    "bytes": 1862768,
+    "recording": true
+  },
+  {
+    "id": "print-customization",
+    "name": "Personalized Print Templates",
+    "duration": 49.733333,
+    "durationLabel": "0:50",
+    "bytes": 1157518,
+    "recording": true
+  }
+]
