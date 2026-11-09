@@ -2,10 +2,23 @@
   {
     "id": "core-system",
     "name": "Core Patient Management",
-    "duration": 201.133333,
-    "durationLabel": "3:21",
-    "bytes": 4494290,
-    "recording": true
+    "duration": 157.833333,
+    "durationLabel": "2:38",
+    "bytes": 4149271,
+    "recording": true,
+    "coreOnly": true,
+    "optionalFeaturesEnabled": [],
+    "noPrinting": true,
+    "consultationTabs": [
+      "Consultation",
+      "Prescription",
+      "Laboratory",
+      "Medical Certificate",
+      "Referral",
+      "Admission",
+      "Freeform"
+    ],
+    "asset": "core-system-core-only-v3.mp4"
   },
   {
     "id": "cloud-backup",
