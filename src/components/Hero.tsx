@@ -293,7 +293,7 @@ const Hero = () => {
           <div className="hero-notes" aria-label="Good to know">
             <div className="hero-note">
               <IconWifiOff className="hero-note-icon" />
-              No internet needed • No monthly fees
+              Core system works offline
             </div>
             <div className="hero-note">
               <IconMonitor className="hero-note-icon" />
@@ -305,7 +305,7 @@ const Hero = () => {
             </div>
             <div className="hero-note">
               <IconSliders className="hero-note-icon" />
-              Customizable and expandable
+              Remote access &amp; AI available as add-ons
             </div>
           </div>
         </div>

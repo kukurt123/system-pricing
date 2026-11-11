@@ -1,3 +1,4 @@
+import FeatureVideo from './FeatureVideo'
 import { useState, type FC } from 'react'
 import type { Application, Selections } from '../types'
 import { formatPrice } from '../utils/pricing'
@@ -67,6 +68,7 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
                     {isFeatured ? <span className="feature-tag">Main package</span> : null}
                   </div>
                   <div className="feature-actions">
+                    {feature.video ? <FeatureVideo name={feature.name} video={feature.video} /> : null}
                     <button
                       type="button"
                       className="feature-details-toggle"
@@ -94,12 +96,25 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
                     </label>
                   </div>
                 </div>
+                {feature.localModels ? (
+                  <table className="local-models" aria-label="AI options">
+                    <thead><tr><th>Option</th><th>Includes</th></tr></thead>
+                    <tbody>{feature.localModels.map(option => (
+                      <tr key={option.name} className={option.recommended ? 'is-recommended' : undefined}>
+                        <th scope="row">{option.name}{option.recommended ? <span className="ai-option-recommendation">Recommended</span> : null}</th>
+                        <td>{option.capability}</td>
+                      </tr>
+                    ))}</tbody>
+                  </table>
+                ) : null}
                 <div
                   id={detailsId}
                   className={`feature-details-panel ${isExpanded ? 'is-open' : ''}`}
                   hidden={!isExpanded}
                 >
                   <p className="feature-description">{feature.description}</p>
+                  {feature.pricingNote ? <p className="feature-description">{feature.pricingNote}</p> : null}
+                  {feature.localModels ? <p className="feature-description">Computer requirements: {feature.localModels.map(option => `${option.name}: ${option.memory}`).join('; ')}.</p> : null}
                   <ul className="feature-highlights">
                     {highlights.map((item, index) => (
                       <li key={`${feature.id}:${index}`}>{item}</li>

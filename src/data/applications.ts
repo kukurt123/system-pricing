@@ -1,3 +1,4 @@
+import { featureVideos } from './featureVideos'
 import type { Application } from '../types'
 
 const img = (name: string) => `${import.meta.env.BASE_URL}illustrations/${name}`
@@ -10,6 +11,7 @@ export const applications: Application[] = [
     features: [
       {
         id: 'core-system',
+        video: featureVideos['core-system'],
         name: 'Core Patient Management',
         description: 'Your clinic’s essential workflow in one system.',
         required: true,
@@ -27,6 +29,7 @@ export const applications: Application[] = [
       },
       {
         id: 'cloud-backup',
+        video: featureVideos['cloud-backup'],
         name: 'Cloud Backup',
         description: 'Keep an off-site copy of your clinic data for extra protection.',
         highlights: [
@@ -50,7 +53,42 @@ export const applications: Application[] = [
         price: 8000,
       },
       {
+        id: 'remote-access',
+        video: featureVideos['remote-access'],
+        name: 'Remote Access',
+        description: 'Open your clinic system from outside the clinic through a remote access link.',
+        highlights: [
+          'Access through a browser on another computer or mobile device',
+          'Clinic laptop controls when remote access starts and stops',
+          'Share the access link or scan its QR code',
+          'Uses existing system accounts and permissions',
+          'Separate from off-site encoding of old patient records',
+        ],
+        pricingNote: 'The clinic server must stay powered on and connected to the internet while remote access is in use.',
+        image: img('remote-encoding.svg'),
+        price: 8000,
+      },
+      {
+        id: 'ai-assistant',
+        video: featureVideos['ai-assistant'],
+        name: 'AI Assistant',
+        description: 'Helpful suggestions for everyday consultations.',
+        highlights: [
+          'Works offline after setup',
+          'High and Max include patient summaries',
+        ],
+        pricingNote: 'We check your computer before setup.',
+        localModels: [
+          { name: 'Medium', memory: '8 GB RAM', capability: 'Helpful suggestions for daily consultations', recommended: true },
+          { name: 'High', memory: '16 GB RAM', capability: 'Adds patient summaries' },
+          { name: 'Max', memory: '16 GB RAM + 12 GB GPU memory, or 28 GB shared memory', capability: 'Reviews more patient history' },
+        ],
+        image: img('ai-assistant.svg'),
+        price: 12000,
+      },
+      {
         id: 'lab-scanning',
+        video: featureVideos['lab-scanning'],
         name: 'Scan & Store Diagnostic Files',
         description: 'Scan or capture patient diagnostic files/images into the patient record.',
         highlights: [
@@ -63,6 +101,7 @@ export const applications: Application[] = [
       },
       {
         id: 'inventory',
+        video: featureVideos['inventory'],
         name: 'Inventory System',
         description: 'Track medicines and clinic supplies linked to prescriptions.',
         highlights: [
@@ -75,6 +114,7 @@ export const applications: Application[] = [
       },
       {
         id: 'remote-encoding',
+        video: featureVideos['remote-encoding'],
         name: 'Old Patient Records Encoding (Off-Site)',
         description:
           'Encode old patient records on a separate computer outside the clinic and sync them into the main system.',
@@ -84,6 +124,7 @@ export const applications: Application[] = [
       },
       {
         id: 'dashboard',
+        video: featureVideos['dashboard'],
         name: 'Clinic Dashboard',
         description: 'View clinic activity and revenues at a glance.',
         highlights: ['Revenues and consultation counts', 'Date-based filters', 'Quick clinic insights'],
@@ -92,6 +133,7 @@ export const applications: Application[] = [
       },
       {
         id: 'pediatrics-pack',
+        video: featureVideos['pediatrics-pack'],
         name: 'Vaccination Package',
         description: 'Tools and templates for recording vaccines and managing immunization visits.',
         highlights: [

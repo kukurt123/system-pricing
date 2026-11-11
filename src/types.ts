@@ -1,3 +1,10 @@
+export type FeatureVideoSource = {
+  src: string
+  poster: string
+  durationLabel: string
+  youtubeId?: string
+}
+
 export type Feature = {
   id: string
   name: string
@@ -5,6 +12,9 @@ export type Feature = {
   highlights?: string[]
   image?: string
   price: number
+  video?: FeatureVideoSource
+  localModels?: { name: string; memory: string; capability: string; recommended?: boolean }[]
+  pricingNote?: string
   required?: boolean
 }
 

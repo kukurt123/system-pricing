@@ -16,7 +16,8 @@ export const buildQuoteMailto = (
     if (!enabled.length) return
     lines.push(`${app.name}:`)
     enabled.forEach((feature) => {
-      lines.push(`- ${feature.name} (${formatPrice(feature.price)})`)
+      lines.push(`- ${feature.name} (${formatPrice(feature.price)})` )
+      if (feature.pricingNote) lines.push(`  ${feature.pricingNote}`)
     })
     lines.push('')
   })
