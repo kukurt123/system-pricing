@@ -63,10 +63,23 @@
   {
     "id": "inventory",
     "name": "Inventory System",
-    "duration": 67.366667,
-    "durationLabel": "1:07",
-    "bytes": 1806750,
-    "recording": true
+    "duration": 330.633333,
+    "durationLabel": "5:31",
+    "bytes": 8980950,
+    "recording": true,
+    "asset": "inventory-linked-workflow-v3.mp4",
+    "linkedInventoryWorkflow": true,
+    "medicine": {
+      "openingStock": 100,
+      "used": 10,
+      "remainingStock": 90
+    },
+    "vaccine": {
+      "openingStock": 20,
+      "used": 1,
+      "remainingStock": 19
+    },
+    "noPrinting": true
   },
   {
     "id": "remote-encoding",
