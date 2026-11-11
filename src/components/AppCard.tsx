@@ -98,11 +98,12 @@ const AppCard: FC<Props> = ({ app, selections, onSelectAll, onClearAll, onToggle
                 </div>
                 {feature.localModels ? (
                   <table className="local-models" aria-label="AI options">
-                    <thead><tr><th>Option</th><th>Includes</th></tr></thead>
+                    <thead><tr><th>Option</th><th>Includes</th><th>Recommended RAM</th></tr></thead>
                     <tbody>{feature.localModels.map(option => (
                       <tr key={option.name} className={option.recommended ? 'is-recommended' : undefined}>
                         <th scope="row">{option.name}{option.recommended ? <span className="ai-option-recommendation">Recommended</span> : null}</th>
                         <td>{option.capability}</td>
+                        <td>{option.memory}</td>
                       </tr>
                     ))}</tbody>
                   </table>
