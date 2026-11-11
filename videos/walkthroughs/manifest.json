@@ -1,7 +1,7 @@
 [
   {
     "id": "core-system",
-    "name": "Core Patient Management",
+    "name": "Base Package",
     "duration": 157.833333,
     "durationLabel": "2:38",
     "bytes": 4149271,
