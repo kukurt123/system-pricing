@@ -16,6 +16,8 @@ export type Feature = {
   localModels?: { name: string; memory: string; capability: string; recommended?: boolean }[]
   pricingNote?: string
   required?: boolean
+  recommended?: boolean
+  addon?: boolean
 }
 
 export type Application = {

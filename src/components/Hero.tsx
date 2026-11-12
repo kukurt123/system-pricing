@@ -236,7 +236,7 @@ const coreSystem =
   applications.find((app) => app.id === 'pms')?.features.find((feature) => feature.id === 'core-system') ?? null
 
 const coreSystemPrice = coreSystem?.price ?? 0
-const coreSystemName = coreSystem?.name ?? 'Core system'
+const coreSystemName = coreSystem?.name ?? 'Base Package'
 
 const Hero = () => {
   const heroRef = useRef<HTMLElement | null>(null)
@@ -293,7 +293,7 @@ const Hero = () => {
           <div className="hero-notes" aria-label="Good to know">
             <div className="hero-note">
               <IconWifiOff className="hero-note-icon" />
-              Core system works offline
+              Works offline
             </div>
             <div className="hero-note">
               <IconMonitor className="hero-note-icon" />
@@ -301,11 +301,11 @@ const Hero = () => {
             </div>
             <div className="hero-note">
               <IconShieldCheck className="hero-note-icon" />
-              Data safety (backup &amp; restore)
+              Backup &amp; restore
             </div>
             <div className="hero-note">
               <IconSliders className="hero-note-icon" />
-              Remote access &amp; AI available as add-ons
+              Remote access &amp; AI add-ons
             </div>
           </div>
         </div>
@@ -314,9 +314,9 @@ const Hero = () => {
           <div className="hero-art-wrap">
             <img className="hero-art" src={img('clinic-hero.svg')} alt="" decoding="async" />
             <div className="hero-art-badge">
-              <div className="hero-art-badge-kicker">Basic package</div>
+              <div className="hero-art-badge-kicker">{coreSystemName}</div>
               <div className="hero-art-badge-price">{formatPrice(coreSystemPrice)}</div>
-              <div className="hero-art-badge-sub">{coreSystemName}</div>
+              <div className="hero-art-badge-sub">Patient records &amp; consultations</div>
             </div>
           </div>
         </div>
@@ -329,7 +329,7 @@ const Hero = () => {
             Hardware not included
           </div>
         </div>
-        <p className="hardware-card-note">To use the system, you’ll need these basic devices in your clinic.</p>
+        <p className="hardware-card-note">You’ll need these devices.</p>
         <div className="hardware-chips" role="list">
           <div className="hardware-chip" role="listitem">
             <IconLaptop className="hardware-chip-icon" />
@@ -337,7 +337,7 @@ const Hero = () => {
           </div>
           <div className="hardware-chip" role="listitem">
             <IconPhone className="hardware-chip-icon" />
-            Hand devices
+            Phone or tablet
           </div>
           <div className="hardware-chip" role="listitem">
             <IconPrinter className="hardware-chip-icon" />

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
+import type { PackageId } from '../data/packages'
 import type { Application, Selections } from '../types'
+import { getAppQuote, type AppQuote } from '../utils/pricing'
 
 const STORAGE_PREFIX = 'pricing-selections:v2:'
 
@@ -81,24 +83,50 @@ export const useSelections = (apps: Application[]) => {
     setSelections((prev) => ({ ...prev, [appId]: nextSelection }))
   }
 
+  const setPackageForApp = (appId: string, preset: PackageId) => {
+    const app = apps.find((item) => item.id === appId)
+    if (!app) return
+
+    setSelections((prev) => ({
+      ...prev,
+      [appId]: Object.fromEntries(
+        app.features.map((feature) => [
+          feature.id,
+          Boolean(feature.required || (feature.addon
+            ? prev[appId]?.[feature.id]
+            : preset === 'premium' || feature.recommended)),
+        ]),
+      ),
+    }))
+  }
+
   const resetAll = () => {
     const defaults = buildDefaults(apps)
     setSelections(defaults)
   }
 
-  const appTotals = useMemo(() => {
-    return apps.reduce<Record<string, number>>((acc, app) => {
-      const appSelection = applyRequiredFeatures(app, selections[app.id] ?? getDefaultSelectionForApp(app))
-      const total = app.features.reduce((sum, feature) => {
-        const isEnabled = feature.required ? true : (appSelection[feature.id] ?? false)
-        return isEnabled ? sum + feature.price : sum
-      }, 0)
-      acc[app.id] = total
-      return acc
-    }, {})
-  }, [apps, selections])
+  const appQuotes = useMemo(
+    () =>
+      Object.fromEntries(
+        apps.map((app) => [
+          app.id,
+          getAppQuote(app, applyRequiredFeatures(app, selections[app.id] ?? getDefaultSelectionForApp(app))),
+        ]),
+      ) as Record<string, AppQuote>,
+    [apps, selections],
+  )
+
+  const appTotals = useMemo(
+    () => Object.fromEntries(Object.entries(appQuotes).map(([id, quote]) => [id, quote.total])) as Record<string, number>,
+    [appQuotes],
+  )
 
   const overallTotal = useMemo(() => Object.values(appTotals).reduce((sum, value) => sum + value, 0), [appTotals])
+  const overallSubtotal = useMemo(
+    () => Object.values(appQuotes).reduce((sum, quote) => sum + quote.subtotal, 0),
+    [appQuotes],
+  )
+  const overallDiscount = overallSubtotal - overallTotal
 
   const totalFeatureCount = useMemo(
     () => apps.reduce((sum, app) => sum + app.features.length, 0),
@@ -122,9 +150,13 @@ export const useSelections = (apps: Application[]) => {
     selections,
     updateFeature,
     setAllForApp,
+    setPackageForApp,
     resetAll,
+    appQuotes,
     appTotals,
     overallTotal,
+    overallSubtotal,
+    overallDiscount,
     totalFeatureCount,
     selectedFeatureCount,
   }

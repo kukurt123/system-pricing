@@ -2,6 +2,8 @@ import { formatPrice } from '../utils/pricing'
 
 type Props = {
   overallTotal: number
+  overallSubtotal: number
+  overallDiscount: number
   onRequest: () => void
   onQuestions: () => void
   onDemo: () => void
@@ -66,7 +68,7 @@ const IconFacebook = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const TotalBar = ({ overallTotal, onRequest, onQuestions, onDemo, facebookUrl }: Props) => {
+const TotalBar = ({ overallTotal, overallSubtotal, overallDiscount, onRequest, onQuestions, onDemo, facebookUrl }: Props) => {
   return (
     <footer className="total-bar">
       <div className="total-actions">
@@ -79,7 +81,7 @@ const TotalBar = ({ overallTotal, onRequest, onQuestions, onDemo, facebookUrl }:
         </button>
         <button className="ghost-button" type="button" onClick={onDemo}>
           <IconPlayCircle className="button-icon" />
-          Request Online Demo
+          Book a demo
         </button>
         <button
           className="ghost-button"
@@ -92,6 +94,12 @@ const TotalBar = ({ overallTotal, onRequest, onQuestions, onDemo, facebookUrl }:
       </div>
       <div className="total-left" role="status" aria-live="polite">
         <span className="total-label">Total</span>
+        {overallDiscount > 0 ? (
+          <span className="total-discount">
+            <s className="total-original">{formatPrice(overallSubtotal)}</s>
+            <span className="total-save">You save {formatPrice(overallDiscount)}</span>
+          </span>
+        ) : null}
         <span className="total-amount">
           <span key={overallTotal} className="price-pop">
             {formatPrice(overallTotal)}

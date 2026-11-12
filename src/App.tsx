@@ -12,11 +12,15 @@ function App() {
     selections,
     updateFeature,
     setAllForApp,
+    setPackageForApp,
+    appQuotes,
     overallTotal,
+    overallSubtotal,
+    overallDiscount,
   } = useSelections(applications)
 
   const handleQuoteRequest = () => {
-    const mailto = buildQuoteMailto(applications, selections, overallTotal, contact.email)
+    const mailto = buildQuoteMailto(applications, selections, appQuotes, contact.email)
     window.location.href = mailto
   }
 
@@ -40,7 +44,9 @@ function App() {
             key={app.id}
             app={app}
             selections={selections}
-            onSelectAll={() => setAllForApp(app.id, true)}
+            quote={appQuotes[app.id]}
+            onSelectPremium={() => setPackageForApp(app.id, 'premium')}
+            onSelectStandard={() => setPackageForApp(app.id, 'standard')}
             onClearAll={() => setAllForApp(app.id, false)}
             onToggle={(featureId, enabled) => updateFeature(app.id, featureId, enabled)}
           />
@@ -49,6 +55,8 @@ function App() {
 
       <TotalBar
         overallTotal={overallTotal}
+        overallSubtotal={overallSubtotal}
+        overallDiscount={overallDiscount}
         onRequest={handleQuoteRequest}
         onQuestions={handleQuestions}
         onDemo={handleDemoRequest}

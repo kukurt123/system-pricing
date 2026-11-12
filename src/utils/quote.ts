@@ -1,24 +1,33 @@
+import { packages } from '../data/packages'
 import type { Application, Selections } from '../types'
-import { formatPrice } from './pricing'
+import { formatPrice, type AppQuote } from './pricing'
 
 const DEFAULT_RECIPIENT = 'kurtestacion@gmail.com'
 
 export const buildQuoteMailto = (
   apps: Application[],
   selections: Selections,
-  overallTotal: number,
+  quotes: Record<string, AppQuote>,
   recipient = DEFAULT_RECIPIENT,
 ) => {
   const lines: string[] = []
+  let overallTotal = 0
 
   apps.forEach((app) => {
+    const quote = quotes[app.id]
+    if (quote) overallTotal += quote.total
     const enabled = app.features.filter((feature) => feature.required || (selections[app.id]?.[feature.id] ?? false))
     if (!enabled.length) return
     lines.push(`${app.name}:`)
+    if (quote?.appliedPackage) lines.push(`Package: ${packages[quote.appliedPackage].name}`)
     enabled.forEach((feature) => {
       lines.push(`- ${feature.name} (${formatPrice(feature.price)})` )
       if (feature.pricingNote) lines.push(`  ${feature.pricingNote}`)
     })
+    if (quote?.discount) {
+      lines.push(`Subtotal: ${formatPrice(quote.subtotal)}`)
+      lines.push(`${packages[quote.appliedPackage ?? 'standard'].name} package discount: -${formatPrice(quote.discount)}`)
+    }
     lines.push('')
   })
 

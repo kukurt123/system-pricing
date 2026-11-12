@@ -12,7 +12,7 @@ export const featureVideos: Record<string, FeatureVideoSource> = {
   'remote-access': video('remote-access', '0:56'),
   'ai-assistant': video('ai-assistant', '1:32'),
   'lab-scanning': video('lab-scanning', '0:33'),
-  'inventory': video('inventory', '1:07'),
+  'inventory': video('inventory-linked-workflow-v3', '5:31'),
   'remote-encoding': video('remote-encoding', '1:15'),
   'dashboard': video('dashboard', '0:43'),
   'pediatrics-pack': video('pediatrics-pack', '1:06'),
